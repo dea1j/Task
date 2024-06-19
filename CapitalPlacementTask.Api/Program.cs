@@ -1,11 +1,25 @@
+using CapitalPlacementTask.Api.Services.Implementation;
+using CapitalPlacementTask.Api.Services.Interfaces;
+using Microsoft.Azure.Cosmos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Register Services
+builder.Services.AddScoped<IApplicationFormService, ApplicationFormService>();
+builder.Services.AddScoped<IApplicationSubmissionService, ApplicationSubmissionService>();
+
+// CosmosDb Setup
+builder.Services.AddSingleton<CosmosClient>(sp =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("CosmosDb");
+    return new CosmosClient(connectionString);
+});
 
 var app = builder.Build();
 

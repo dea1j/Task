@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "kZhoT4A6Bn6yJKqzeCnKU8DfDuqEV9s3KczClV7HH3E=",
+  "Source": "CapitalPlacementTask.Api",
+  "BasePath": "_content/CapitalPlacementTask.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

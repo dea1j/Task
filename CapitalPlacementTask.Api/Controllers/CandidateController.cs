@@ -15,20 +15,20 @@ namespace CapitalPlacementTask.Api.Controllers;
 [Route("[controller]")]
 public class CandidateController : ControllerBase
 {
-    private readonly IApplicationFormRepository _applicationFormRepository;
+    private readonly IApplicationFormService _applicationFormService;
     private readonly IApplicationSubmissionService _applicationSubmissionService;
 
-    public CandidateController(IApplicationFormRepository applicationFormRepository, 
+    public CandidateController(IApplicationFormService applicationFormService, 
     IApplicationSubmissionService applicationSubmissionService)
     {
-        _applicationFormRepository = applicationFormRepository;
+        _applicationFormService = applicationFormService;
         _applicationSubmissionService = applicationSubmissionService;
     }
 
     [HttpGet("questions/{applicationFormId}")]
     public async Task<IActionResult> GetQuestions(string applicationFormId)
     {
-        var applicationForm = await _applicationFormRepository.GetApplicationFormByIdAsync(applicationFormId);
+        var applicationForm = await _applicationFormService.GetApplicationFormByIdAsync(applicationFormId);
         if (applicationForm == null) return NotFound();
         return Ok(applicationForm.Questions);
     }
